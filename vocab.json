@@ -1,32 +1,170 @@
 [
-  {"word": "decision", "ipa": "/dɪˈsɪʒən/", "meaning": "quyết định", "example": "She made a _decision_ quickly.", "exampleVi": "Cô ấy đưa ra quyết định một cách nhanh chóng."},
-  {"word": "commitment", "ipa": "/kəˈmɪtmənt/", "meaning": "sự cam kết", "example": "He showed strong _commitment_ to the project.", "exampleVi": "Anh ấy thể hiện sự cam kết mạnh mẽ với dự án."},
-  {"word": "opportunity", "ipa": "/ˌɒpəˈtjuːnəti/", "meaning": "cơ hội", "example": "This job is a great _opportunity_ for growth.", "exampleVi": "Công việc này là một cơ hội tuyệt vời để phát triển."},
-  {"word": "challenge", "ipa": "/ˈtʃælɪndʒ/", "meaning": "thử thách", "example": "She faced a difficult _challenge_ at work.", "exampleVi": "Cô ấy đối mặt với một thử thách khó khăn tại nơi làm việc."},
-  {"word": "achieve", "ipa": "/əˈtʃiːv/", "meaning": "đạt được", "example": "He worked hard to _achieve_ success.", "exampleVi": "Anh ấy làm việc chăm chỉ để đạt được thành công."},
-  {"word": "improve", "ipa": "/ɪmˈpruːv/", "meaning": "cải thiện", "example": "She wants to _improve_ her English skills.", "exampleVi": "Cô ấy muốn cải thiện kỹ năng tiếng Anh của mình."},
-  {"word": "maintain", "ipa": "/meɪnˈteɪn/", "meaning": "duy trì", "example": "It is important to _maintain_ a healthy lifestyle.", "exampleVi": "Điều quan trọng là duy trì lối sống lành mạnh."},
-  {"word": "develop", "ipa": "/dɪˈveləp/", "meaning": "phát triển", "example": "They plan to _develop_ new strategies.", "exampleVi": "Họ lên kế hoạch phát triển các chiến lược mới."},
-  {"word": "increase", "ipa": "/ɪnˈkriːs/", "meaning": "tăng lên", "example": "The company aims to _increase_ profits.", "exampleVi": "Công ty nhằm tăng lợi nhuận."},
-  {"word": "reduce", "ipa": "/rɪˈdjuːs/", "meaning": "giảm", "example": "We need to _reduce_ waste.", "exampleVi": "Chúng ta cần giảm rác thải."},
-  {"word": "significant", "ipa": "/sɪɡˈnɪfɪkənt/", "meaning": "quan trọng, đáng kể", "example": "There was a _significant_ improvement.", "exampleVi": "Đã có một sự cải thiện đáng kể."},
-  {"word": "efficient", "ipa": "/ɪˈfɪʃənt/", "meaning": "hiệu quả", "example": "She is very _efficient_ at work.", "exampleVi": "Cô ấy rất hiệu quả trong công việc."},
-  {"word": "responsible", "ipa": "/rɪˈspɒnsəbl/", "meaning": "có trách nhiệm", "example": "He is _responsible_ for managing the team.", "exampleVi": "Anh ấy chịu trách nhiệm quản lý nhóm."},
-  {"word": "environment", "ipa": "/ɪnˈvaɪrənmənt/", "meaning": "môi trường", "example": "We must protect the _environment_.", "exampleVi": "Chúng ta phải bảo vệ môi trường."},
-  {"word": "solution", "ipa": "/səˈluːʃən/", "meaning": "giải pháp", "example": "They found a practical _solution_.", "exampleVi": "Họ tìm ra một giải pháp thực tế."},
-  {"word": "issue", "ipa": "/ˈɪʃuː/", "meaning": "vấn đề", "example": "This is a serious _issue_.", "exampleVi": "Đây là một vấn đề nghiêm trọng."},
-  {"word": "impact", "ipa": "/ˈɪmpækt/", "meaning": "tác động", "example": "The policy has a major _impact_.", "exampleVi": "Chính sách này có tác động lớn."},
-  {"word": "benefit", "ipa": "/ˈbenɪfɪt/", "meaning": "lợi ích", "example": "Exercise brings many _benefits_.", "exampleVi": "Tập thể dục mang lại nhiều lợi ích."},
-  {"word": "requirement", "ipa": "/rɪˈkwaɪəmənt/", "meaning": "yêu cầu", "example": "This job has strict _requirements_.", "exampleVi": "Công việc này có yêu cầu nghiêm ngặt."},
-  {"word": "knowledge", "ipa": "/ˈnɒlɪdʒ/", "meaning": "kiến thức", "example": "He has deep _knowledge_ of the subject.", "exampleVi": "Anh ấy có kiến thức sâu về chủ đề này."},
-  {"word": "experience", "ipa": "/ɪkˈspɪəriəns/", "meaning": "kinh nghiệm", "example": "She gained valuable _experience_.", "exampleVi": "Cô ấy tích lũy được kinh nghiệm quý báu."},
-  {"word": "skill", "ipa": "/skɪl/", "meaning": "kỹ năng", "example": "Communication is an important _skill_.", "exampleVi": "Giao tiếp là một kỹ năng quan trọng."},
-  {"word": "goal", "ipa": "/ɡəʊl/", "meaning": "mục tiêu", "example": "He set a clear _goal_.", "exampleVi": "Anh ấy đặt ra một mục tiêu rõ ràng."},
-  {"word": "strategy", "ipa": "/ˈstrætədʒi/", "meaning": "chiến lược", "example": "They developed a new _strategy_.", "exampleVi": "Họ phát triển một chiến lược mới."},
-  {"word": "performance", "ipa": "/pəˈfɔːməns/", "meaning": "hiệu suất", "example": "Her _performance_ improved significantly.", "exampleVi": "Hiệu suất của cô ấy được cải thiện đáng kể."},
-  {"word": "result", "ipa": "/rɪˈzʌlt/", "meaning": "kết quả", "example": "The _result_ was surprising.", "exampleVi": "Kết quả thật bất ngờ."},
-  {"word": "failure", "ipa": "/ˈfeɪljə/", "meaning": "thất bại", "example": "Failure is part of learning.", "exampleVi": "Thất bại là một phần của việc học hỏi."},
-  {"word": "success", "ipa": "/səkˈses/", "meaning": "thành công", "example": "Hard work leads to _success_.", "exampleVi": "Làm việc chăm chỉ dẫn đến thành công."},
-  {"word": "improvement", "ipa": "/ɪmˈpruːvmənt/", "meaning": "sự cải thiện", "example": "There was a clear _improvement_.", "exampleVi": "Đã có một sự cải thiện rõ rệt."},
-  {"word": "analysis", "ipa": "/əˈnæləsɪs/", "meaning": "phân tích", "example": "The report includes detailed _analysis_.", "exampleVi": "Báo cáo bao gồm phân tích chi tiết."}
+  {
+    "word": "水果",
+    "ipa": "shuǐguǒ",
+    "meaning": "hoa quả",
+    "example": "你想买什么_水果_？",
+    "exampleVi": "Bạn muốn mua hoa quả gì?"
+  },
+  {
+    "word": "果",
+    "ipa": "guǒ",
+    "meaning": "quả",
+    "example": "这个_果_很大。",
+    "exampleVi": "Quả này rất lớn."
+  },
+  {
+    "word": "买",
+    "ipa": "mǎi",
+    "meaning": "mua",
+    "example": "我要_买_苹果。",
+    "exampleVi": "Tôi muốn mua táo."
+  },
+  {
+    "word": "卖",
+    "ipa": "mài",
+    "meaning": "bán",
+    "example": "这里不_卖_水果。",
+    "exampleVi": "Ở đây không bán hoa quả."
+  },
+  {
+    "word": "苹果",
+    "ipa": "píngguǒ",
+    "meaning": "táo",
+    "example": "一斤_苹果_多少钱？",
+    "exampleVi": "Một cân táo bao nhiêu tiền?"
+  },
+  {
+    "word": "斤",
+    "ipa": "jīn",
+    "meaning": "cân (Trung Quốc) = 1/2kg",
+    "example": "我要买两_斤_。",
+    "exampleVi": "Tôi muốn mua hai cân (1kg)."
+  },
+  {
+    "word": "公斤",
+    "ipa": "gōngjīn",
+    "meaning": "kg = 2 cân (Trung Quốc)",
+    "example": "一_公斤_是两斤。",
+    "exampleVi": "Một kg là hai cân (TQ)."
+  },
+  {
+    "word": "多少",
+    "ipa": "duōshao",
+    "meaning": "bao nhiêu",
+    "example": "_多少_钱？",
+    "exampleVi": "Bao nhiêu tiền?"
+  },
+  {
+    "word": "多",
+    "ipa": "duō",
+    "meaning": "nhiều",
+    "example": "这里有很多_多_人。",
+    "exampleVi": "Ở đây có rất nhiều người."
+  },
+  {
+    "word": "少",
+    "ipa": "shǎo",
+    "meaning": "ít",
+    "example": "太_少_了。",
+    "exampleVi": "Ít quá rồi."
+  },
+  {
+    "word": "块",
+    "ipa": "kuài",
+    "meaning": "đồng (tệ)",
+    "example": "五_块_钱。",
+    "exampleVi": "Năm đồng (tệ)."
+  },
+  {
+    "word": "元",
+    "ipa": "yuán",
+    "meaning": "tệ",
+    "example": "十_元_人民币。",
+    "exampleVi": "Mười nhân dân tệ."
+  },
+  {
+    "word": "毛",
+    "ipa": "máo",
+    "meaning": "hào",
+    "example": "五_毛_钱。",
+    "exampleVi": "Năm hào."
+  },
+  {
+    "word": "角",
+    "ipa": "jiǎo",
+    "meaning": "hào",
+    "example": "一_角_。",
+    "exampleVi": "Một hào."
+  },
+  {
+    "word": "分",
+    "ipa": "fēn",
+    "meaning": "phân, xu",
+    "example": "这儿不找_分_钱。",
+    "exampleVi": "Ở đây không trả lại tiền xu."
+  },
+  {
+    "word": "盾",
+    "ipa": "dùn",
+    "meaning": "đồng (tiền), VNĐ",
+    "example": "一万_盾_。",
+    "exampleVi": "Mười nghìn đồng (VNĐ)."
+  },
+  {
+    "word": "贵",
+    "ipa": "guì",
+    "meaning": "đắt",
+    "example": "太_贵_了！",
+    "exampleVi": "Đắt quá rồi!"
+  },
+  {
+    "word": "便宜",
+    "ipa": "piányi",
+    "meaning": "rẻ",
+    "example": "再_便宜_一点儿吧。",
+    "exampleVi": "Rẻ thêm một chút đi."
+  },
+  {
+    "word": "了",
+    "ipa": "le",
+    "meaning": "trợ từ ngữ khí",
+    "example": "太好了_了_。",
+    "exampleVi": "Tốt quá rồi."
+  },
+  {
+    "word": "吧",
+    "ipa": "ba",
+    "meaning": "trợ từ dùng ở cuối câu",
+    "example": "走_吧_。",
+    "exampleVi": "Đi thôi nào."
+  },
+  {
+    "word": "给",
+    "ipa": "gěi",
+    "meaning": "cho, lấy cho",
+    "example": "_给_您钱。",
+    "exampleVi": "Gửi tiền cho ngài."
+  },
+  {
+    "word": "一共",
+    "ipa": "yí gòng",
+    "meaning": "tất cả, tổng cộng",
+    "example": "_一共_多少钱？",
+    "exampleVi": "Tổng cộng bao nhiêu tiền?"
+  },
+  {
+    "word": "找",
+    "ipa": "zhǎo",
+    "meaning": "trả lại (tiền lẻ)",
+    "example": "_找_您三块。",
+    "exampleVi": "Trả lại ngài 3 đồng."
+  },
+  {
+    "word": "半",
+    "ipa": "bàn",
+    "meaning": "một nửa",
+    "example": "一斤_半_。",
+    "exampleVi": "Một cân rưỡi."
+  }
 ]

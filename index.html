@@ -19,22 +19,26 @@
   * { box-sizing: border-box; }
 
   body {
-    /* Font mặc định: Nunito cho chữ Latin, Noto Sans SC và các font Trung Quốc phổ biến cho ký tự Hán */
+    /* Font mặc định: Nunito cho chữ Latin, Noto Sans SC cho chữ Hán thường */
     font-family: 'Nunito', 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
     background: linear-gradient(135deg, #fdf4ff 0%, #eff6ff 40%, #f0fdf4 70%, #fff7ed 100%);
     min-height: 100vh;
     color: #3b3b5c;
   }
 
-  /* Đảm bảo các thành phần chứa chữ Hán cũng dùng font Trung ưu tiên */
-  .flashcard-front, .flashcard-back, .vocab-table, .match-item, .option-btn, .modal-box, input, textarea, button {
-    font-family: 'Nunito', 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  /* Font KaiTi (thư pháp) cho các từ Hán in đậm màu tím */
+  .hanzi-kai,
+  #cardWord,
+  .vocab-table td .font-black.text-purple-700,
+  .match-word {
+    font-family: 'KaiTi', '楷体', '华文楷书', 'STKaiti', 'Noto Serif SC', serif !important;
+    font-weight: 800;
+    letter-spacing: 0.5px;
   }
 
-  /* Riêng cho các từ Hán to, giữ độ đậm cân đối */
-  .chinese-word, #cardWord, .vocab-table td:first-child, .match-word {
-    font-weight: 700;
-    letter-spacing: 0.5px;
+  /* Đảm bảo các thành phần khác dùng font mặc định ổn */
+  .flashcard-front, .flashcard-back, .vocab-table, .match-item, .option-btn, .modal-box, input, textarea, button {
+    font-family: 'Nunito', 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
   }
 
   .flashcard-scene {
@@ -563,7 +567,6 @@ const vocab = [
     "exampleVi": "Một cân rưỡi."
   }
 ];
-
 let currentCard = 0, isFlipped = false;
 let learnedSet = new Set(JSON.parse(localStorage.getItem('learnedWords') || '[]'));
 let currentGame = null, gameQuestions = [], gameCurrentQ = 0, gameCorrect = 0, gameAnswered = false;
@@ -628,7 +631,7 @@ function selectMatch(type, key) {
 function showMatchSummary() { let pct=matchTotal?Math.round((matchScore/matchTotal)*100):0; scores.matching={correct:matchScore,total:matchTotal}; localStorage.setItem('vocabScores', JSON.stringify(scores)); updateScoreDisplay(); document.getElementById('gameContent').innerHTML=`<div class="text-center"><div class="text-6xl">🏆</div><h3 class="font-black">Kết quả ghép cặp: ${matchScore}/${matchTotal}</h3><button onclick="closeModal()" class="mt-4 px-6 py-2 bg-purple-500 text-white rounded-full">Đóng</button><button onclick="openGame('matching')" class="ml-2 px-6 py-2 bg-white border rounded-full">Chơi lại</button></div>`; }
 function updateScoreDisplay() { ['quiz','listenWord','typing','matching','listenSentence'].forEach(k=>{ let el=document.getElementById(`score-${k}`); if(el && scores[k]) el.textContent=`${scores[k].correct}/${scores[k].total} (${Math.round((scores[k].correct/scores[k].total)*100)}%)`; }); }
 function playSound(correct) { try{ let ctx=new (window.AudioContext||window.webkitAudioContext)(); let o=ctx.createOscillator(); let g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); correct?(o.frequency.setValueAtTime(600,ctx.currentTime),o.frequency.setValueAtTime(900,ctx.currentTime+0.1)):(o.frequency.setValueAtTime(250,ctx.currentTime),o.frequency.setValueAtTime(180,ctx.currentTime+0.15)); g.gain.setValueAtTime(0.15,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.3); o.start(ctx.currentTime); o.stop(ctx.currentTime+0.3); } catch(e){} }
-function showSummary() { let keys=['quiz','listenWord','typing','matching','listenSentence'], names={quiz:'Trắc nghiệm',listenWord:'Nghe từ',typing:'Gõ từ',matching:'Ghép cặp',listenSentence:'Nghe câu'}, colors={quiz:'#a78bfa',listenWord:'#60a5fa',typing:'#fbbf24',matching:'#34d399',listenSentence:'#f472b6'}; let played=keys.filter(k=>scores[k]); if(!played.length){ document.getElementById('summaryContent').innerHTML='<p class="text-sm">Chưa có dữ liệu. Hãy chơi ít nhất 1 trò chơi!</p>'; return; } let totalCorrect=0,totalQ=0; played.forEach(k=>{totalCorrect+=scores[k].correct; totalQ+=scores[k].total;}); let avgPct=totalQ?Math.round((totalCorrect/totalQ)*100):0; let pieData=played.map(k=>({name:names[k],pct:Math.round((scores[k].correct/scores[k].total)*100),color:colors[k]})); let r=60,cx=70,cy=70; let offset=0,circ=2*Math.PI*r; let slices=pieData.map(d=>{let dash=(d.pct/100)*circ; let s=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${d.color}" stroke-width="14" stroke-dasharray="${dash} ${circ-dash}" stroke-dashoffset="${-offset*circ/100}" transform="rotate(-90 ${cx} ${cy})" opacity="0.85"/>`; offset+=d.pct/pieData.length; return s; }); let pieSVG=`<svg width="140" height="140" viewBox="0 0 140 140"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#f3f4f6" stroke-width="14"/>${slices.join('')}<text x="${cx}" y="${cy-4}" text-anchor="middle" font-weight="900" font-size="20" fill="#7c3aed">${avgPct}%</text><text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="10" fill="#9ca3af">chính xác</text></svg>`; let gameRows=keys.map(k=>{if(!scores[k]) return `<tr><td class="p-2 font-bold">${names[k]}</td><td class="p-2 text-gray-300">Chưa chơi</td>`; let p=Math.round((scores[k].correct/scores[k].total)*100); return `<tr><td class="p-2 font-bold" style="color:${colors[k]}">${names[k]}</td><td class="p-2 font-black">${scores[k].correct}/${scores[k].total} (${p}%)</td>`;}).join(''); document.getElementById('summaryContent').innerHTML=`<div class="flex flex-col sm:flex-row gap-4 items-center"><div>${pieSVG}</div><div><table class="w-full">${gameRows}</td></div></div>`; }
+function showSummary() { let keys=['quiz','listenWord','typing','matching','listenSentence'], names={quiz:'Trắc nghiệm',listenWord:'Nghe từ',typing:'Gõ từ',matching:'Ghép cặp',listenSentence:'Nghe câu'}, colors={quiz:'#a78bfa',listenWord:'#60a5fa',typing:'#fbbf24',matching:'#34d399',listenSentence:'#f472b6'}; let played=keys.filter(k=>scores[k]); if(!played.length){ document.getElementById('summaryContent').innerHTML='<p class="text-sm">Chưa có dữ liệu. Hãy chơi ít nhất 1 trò chơi!</p>'; return; } let totalCorrect=0,totalQ=0; played.forEach(k=>{totalCorrect+=scores[k].correct; totalQ+=scores[k].total;}); let avgPct=totalQ?Math.round((totalCorrect/totalQ)*100):0; let pieData=played.map(k=>({name:names[k],pct:Math.round((scores[k].correct/scores[k].total)*100),color:colors[k]})); let r=60,cx=70,cy=70; let offset=0,circ=2*Math.PI*r; let slices=pieData.map(d=>{let dash=(d.pct/100)*circ; let s=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${d.color}" stroke-width="14" stroke-dasharray="${dash} ${circ-dash}" stroke-dashoffset="${-offset*circ/100}" transform="rotate(-90 ${cx} ${cy})" opacity="0.85"/>`; offset+=d.pct/pieData.length; return s; }); let pieSVG=`<svg width="140" height="140" viewBox="0 0 140 140"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#f3f4f6" stroke-width="14"/>${slices.join('')}<text x="${cx}" y="${cy-4}" text-anchor="middle" font-weight="900" font-size="20" fill="#7c3aed">${avgPct}%</text><text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="10" fill="#9ca3af">chính xác</text></svg>`; let gameRows=keys.map(k=>{if(!scores[k]) return `<tr><td class="p-2 font-bold">${names[k]}</td><td class="p-2 text-gray-300">Chưa chơi</td>`; let p=Math.round((scores[k].correct/scores[k].total)*100); return `<tr><td class="p-2 font-bold" style="color:${colors[k]}">${names[k]}</td><td class="p-2 font-black">${scores[k].correct}/${scores[k].total} (${p}%)</td>`;}).join(''); document.getElementById('summaryContent').innerHTML=`<div class="flex flex-col sm:flex-row gap-4 items-center"><div>${pieSVG}</div><div><table class="w-full">${gameRows}</table></div></div>`; }
 
 let touchStartX = 0;
 document.getElementById('flashcardScene').addEventListener('touchstart', e=>{ touchStartX = e.touches[0].clientX; }, {passive:true});

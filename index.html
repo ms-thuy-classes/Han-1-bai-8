@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tiếng Trung cùng Ms.Thúy — Học thông minh</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --pastel-purple: #c084fc;
@@ -19,10 +19,22 @@
   * { box-sizing: border-box; }
 
   body {
-    font-family: 'Nunito', sans-serif;
+    /* Font mặc định: Nunito cho chữ Latin, Noto Sans SC và các font Trung Quốc phổ biến cho ký tự Hán */
+    font-family: 'Nunito', 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
     background: linear-gradient(135deg, #fdf4ff 0%, #eff6ff 40%, #f0fdf4 70%, #fff7ed 100%);
     min-height: 100vh;
     color: #3b3b5c;
+  }
+
+  /* Đảm bảo các thành phần chứa chữ Hán cũng dùng font Trung ưu tiên */
+  .flashcard-front, .flashcard-back, .vocab-table, .match-item, .option-btn, .modal-box, input, textarea, button {
+    font-family: 'Nunito', 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  }
+
+  /* Riêng cho các từ Hán to, giữ độ đậm cân đối */
+  .chinese-word, #cardWord, .vocab-table td:first-child, .match-word {
+    font-weight: 700;
+    letter-spacing: 0.5px;
   }
 
   .flashcard-scene {
@@ -97,7 +109,7 @@
     border: none;
     outline: none;
     text-align: center;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
     font-weight: 800;
     font-size: 0.85rem;
     color: #3b3b5c;
@@ -238,7 +250,7 @@
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
     color: #3b3b5c;
   }
 
@@ -358,36 +370,198 @@
 <script>
 // ======================= DỮ LIỆU TIẾNG TRUNG (30 từ, câu ví dụ hoàn toàn bằng tiếng Trung) =======================
 const vocab = [
-  {word:"决定", ipa:"jué dìng", meaning:"quyết định", example:"我_决定_学习中文。", examplePinyin:"Wǒ _juédìng_ xuéxí Zhōngwén.", exampleVi:"Tôi quyết định học tiếng Trung."},
-  {word:"机会", ipa:"jī huì", meaning:"cơ hội", example:"这是一个好_机会_。", examplePinyin:"Zhè shì yī ge hǎo _jīhuì_.", exampleVi:"Đây là một cơ hội tốt."},
-  {word:"挑战", ipa:"tiǎo zhàn", meaning:"thử thách", example:"新工作是一个大_挑战_。", examplePinyin:"Xīn gōngzuò shì yī ge dà _tiǎozhàn_.", exampleVi:"Công việc mới là một thử thách lớn."},
-  {word:"成功", ipa:"chéng gōng", meaning:"thành công", example:"他_成功_通过了考试。", examplePinyin:"Tā _chénggōng_ tōngguò le kǎoshì.", exampleVi:"Anh ấy đã thành công vượt qua kỳ thi."},
-  {word:"努力", ipa:"nǔ lì", meaning:"cố gắng", example:"我们需要_努力_学习。", examplePinyin:"Wǒmen xūyào _nǔlì_ xuéxí.", exampleVi:"Chúng ta cần cố gắng học tập."},
-  {word:"提高", ipa:"tí gāo", meaning:"nâng cao", example:"我想_提高_中文水平。", examplePinyin:"Wǒ xiǎng _tígāo_ Zhōngwén shuǐpíng.", exampleVi:"Tôi muốn nâng cao trình độ tiếng Trung."},
-  {word:"重要", ipa:"zhòng yào", meaning:"quan trọng", example:"家庭很_重要_。", examplePinyin:"Jiātíng hěn _zhòngyào_.", exampleVi:"Gia đình rất quan trọng."},
-  {word:"简单", ipa:"jiǎn dān", meaning:"đơn giản", example:"这个练习很_简单_。", examplePinyin:"Zhège liànxí hěn _jiǎndān_.", exampleVi:"Bài tập này rất đơn giản."},
-  {word:"复杂", ipa:"fù zá", meaning:"phức tạp", example:"这个问题太_复杂_了。", examplePinyin:"Zhège wèntí tài _fùzá_ le.", exampleVi:"Vấn đề này quá phức tạp."},
-  {word:"准备", ipa:"zhǔn bèi", meaning:"chuẩn bị", example:"我正在_准备_考试。", examplePinyin:"Wǒ zhèngzài _zhǔnbèi_ kǎoshì.", exampleVi:"Tôi đang chuẩn bị cho kỳ thi."},
-  {word:"开始", ipa:"kāi shǐ", meaning:"bắt đầu", example:"我们_开始_做练习吧。", examplePinyin:"Wǒmen _kāishǐ_ zuò liànxí ba.", exampleVi:"Chúng ta bắt đầu làm bài tập nhé."},
-  {word:"帮助", ipa:"bāng zhù", meaning:"giúp đỡ", example:"谢谢你_帮助_我。", examplePinyin:"Xièxie nǐ _bāngzhù_ wǒ.", exampleVi:"Cảm ơn bạn đã giúp đỡ tôi."},
-  {word:"方法", ipa:"fāng fǎ", meaning:"phương pháp", example:"这是好_方法_。", examplePinyin:"Zhè shì hǎo _fāngfǎ_.", exampleVi:"Đây là phương pháp tốt."},
-  {word:"结果", ipa:"jié guǒ", meaning:"kết quả", example:"_结果_令人惊讶。", examplePinyin:"_Jiéguǒ_ lìng rén jīngyà.", exampleVi:"Kết quả thật đáng ngạc nhiên."},
-  {word:"经验", ipa:"jīng yàn", meaning:"kinh nghiệm", example:"他有丰富的工作_经验_。", examplePinyin:"Tā yǒu fēngfù de gōngzuò _jīngyàn_.", exampleVi:"Anh ấy có nhiều kinh nghiệm làm việc."},
-  {word:"知识", ipa:"zhī shi", meaning:"kiến thức", example:"学习可以获得_知识_。", examplePinyin:"Xuéxí kěyǐ huòdé _zhīshi_.", exampleVi:"Học tập có thể đạt được kiến thức."},
-  {word:"环境", ipa:"huán jìng", meaning:"môi trường", example:"保护_环境_很重要。", examplePinyin:"Bǎohù _huánjìng_ hěn zhòngyào.", exampleVi:"Bảo vệ môi trường rất quan trọng."},
-  {word:"发展", ipa:"fā zhǎn", meaning:"phát triển", example:"城市正在快速_发展_。", examplePinyin:"Chéngshì zhèngzài kuàisù _fāzhǎn_.", exampleVi:"Thành phố đang phát triển nhanh chóng."},
-  {word:"问题", ipa:"wèn tí", meaning:"vấn đề", example:"我们需要解决_问题_。", examplePinyin:"Wǒmen xūyào jiějué _wèntí_.", exampleVi:"Chúng ta cần giải quyết vấn đề."},
-  {word:"理由", ipa:"lǐ yóu", meaning:"lý do", example:"请告诉我_理由_。", examplePinyin:"Qǐng gàosu wǒ _lǐyóu_.", exampleVi:"Hãy nói cho tôi lý do."},
-  {word:"相信", ipa:"xiāng xìn", meaning:"tin tưởng", example:"我_相信_你会成功。", examplePinyin:"Wǒ _xiāngxìn_ nǐ huì chénggōng.", exampleVi:"Tôi tin bạn sẽ thành công."},
-  {word:"注意", ipa:"zhù yì", meaning:"chú ý", example:"请_注意_身体健康。", examplePinyin:"Qǐng _zhùyì_ shēntǐ jiànkāng.", exampleVi:"Hãy chú ý sức khỏe."},
-  {word:"忘记", ipa:"wàng jì", meaning:"quên", example:"不要_忘记_做作业。", examplePinyin:"Bùyào _wàngjì_ zuò zuòyè.", exampleVi:"Đừng quên làm bài tập."},
-  {word:"继续", ipa:"jì xù", meaning:"tiếp tục", example:"我们_继续_学习吧。", examplePinyin:"Wǒmen _jìxù_ xuéxí ba.", exampleVi:"Chúng ta tiếp tục học nhé."},
-  {word:"完成", ipa:"wán chéng", meaning:"hoàn thành", example:"我已经_完成_任务了。", examplePinyin:"Wǒ yǐjīng _wánchéng_ rènwu le.", exampleVi:"Tôi đã hoàn thành nhiệm vụ."},
-  {word:"改变", ipa:"gǎi biàn", meaning:"thay đổi", example:"生活_改变_了很多。", examplePinyin:"Shēnghuó _gǎibiàn_ le hěnduō.", exampleVi:"Cuộc sống đã thay đổi rất nhiều."},
-  {word:"保持", ipa:"bǎo chí", meaning:"duy trì", example:"请_保持_积极态度。", examplePinyin:"Qǐng _bǎochí_ jījí tàidu.", exampleVi:"Hãy duy trì thái độ tích cực."},
-  {word:"分享", ipa:"fēn xiǎng", meaning:"chia sẻ", example:"我想_分享_这个快乐。", examplePinyin:"Wǒ xiǎng _fēnxiǎng_ zhège kuàilè.", exampleVi:"Tôi muốn chia sẻ niềm vui này."},
-  {word:"理解", ipa:"lǐ jiě", meaning:"hiểu", example:"我_理解_你的感受。", examplePinyin:"Wǒ _lǐjiě_ nǐ de gǎnshòu.", exampleVi:"Tôi hiểu cảm xúc của bạn."},
-  {word:"建议", ipa:"jiàn yì", meaning:"đề nghị", example:"我有一个好_建议_。", examplePinyin:"Wǒ yǒu yī ge hǎo _jiànyì_.", exampleVi:"Tôi có một đề nghị hay."}
+  {
+    "word": "水果",
+    "ipa": "shuǐguǒ",
+    "meaning": "hoa quả",
+    "example": "你想买什么_水果_？",
+    "examplePinyin": "Nǐ xiǎng mǎi shénme _shuǐguǒ_?",
+    "exampleVi": "Bạn muốn mua hoa quả gì?"
+  },
+  {
+    "word": "果",
+    "ipa": "guǒ",
+    "meaning": "quả",
+    "example": "这个_果_很大。",
+    "examplePinyin": "Zhège _guǒ_ hěn dà.",
+    "exampleVi": "Quả này rất lớn."
+  },
+  {
+    "word": "买",
+    "ipa": "mǎi",
+    "meaning": "mua",
+    "example": "我要_买_苹果。",
+    "examplePinyin": "Wǒ yào _mǎi_ píngguǒ.",
+    "exampleVi": "Tôi muốn mua táo."
+  },
+  {
+    "word": "卖",
+    "ipa": "mài",
+    "meaning": "bán",
+    "example": "这里不_卖_水果。",
+    "examplePinyin": "Zhèlǐ bú _mài_ shuǐguǒ.",
+    "exampleVi": "Ở đây không bán hoa quả."
+  },
+  {
+    "word": "苹果",
+    "ipa": "píngguǒ",
+    "meaning": "táo",
+    "example": "一斤_苹果_多少钱？",
+    "examplePinyin": "Yì jīn _píngguǒ_ duōshao qián?",
+    "exampleVi": "Một cân táo bao nhiêu tiền?"
+  },
+  {
+    "word": "斤",
+    "ipa": "jīn",
+    "meaning": "cân (Trung Quốc) = 1/2kg",
+    "example": "我要买两_斤_。",
+    "examplePinyin": "Wǒ yào mǎi liǎng _jīn_.",
+    "exampleVi": "Tôi muốn mua hai cân (1kg)."
+  },
+  {
+    "word": "公斤",
+    "ipa": "gōngjīn",
+    "meaning": "kg = 2 cân (Trung Quốc)",
+    "example": "一_公斤_是两斤。",
+    "examplePinyin": "Yì _gōngjīn_ shì liǎng jīn.",
+    "exampleVi": "Một kg là hai cân (TQ)."
+  },
+  {
+    "word": "多少",
+    "ipa": "duōshao",
+    "meaning": "bao nhiêu",
+    "example": "_多少_钱？",
+    "examplePinyin": "_Duōshao_ qián?",
+    "exampleVi": "Bao nhiêu tiền?"
+  },
+  {
+    "word": "多",
+    "ipa": "duō",
+    "meaning": "nhiều",
+    "example": "这里有很_多_人。",
+    "examplePinyin": "Zhèlǐ yǒu hěn _duō_ rén.",
+    "exampleVi": "Ở đây có rất nhiều người."
+  },
+  {
+    "word": "少",
+    "ipa": "shǎo",
+    "meaning": "ít",
+    "example": "太_少_了。",
+    "examplePinyin": "Tài _shǎo_ le.",
+    "exampleVi": "Ít quá rồi."
+  },
+  {
+    "word": "块",
+    "ipa": "kuài",
+    "meaning": "Đồng (tệ)",
+    "example": "五_块_钱。",
+    "examplePinyin": "Wǔ _kuài_ qián.",
+    "exampleVi": "Năm đồng (tệ)."
+  },
+  {
+    "word": "元",
+    "ipa": "yuán",
+    "meaning": "tệ",
+    "example": "十_元_人民币。",
+    "examplePinyin": "Shí _yuán_ rénmínbì.",
+    "exampleVi": "Mười nhân dân tệ."
+  },
+  {
+    "word": "毛",
+    "ipa": "máo",
+    "meaning": "hào",
+    "example": "五_毛_钱。",
+    "examplePinyin": "Wǔ _máo_ qián.",
+    "exampleVi": "Năm hào."
+  },
+  {
+    "word": "角",
+    "ipa": "jiǎo",
+    "meaning": "hào",
+    "example": "一_角_。",
+    "examplePinyin": "Yì _jiǎo_.",
+    "exampleVi": "Một hào."
+  },
+  {
+    "word": "分",
+    "ipa": "fēn",
+    "meaning": "phân, xu",
+    "example": "两_分_钱。",
+    "examplePinyin": "Liǎng _fēn_ qián.",
+    "exampleVi": "Hai xu."
+  },
+  {
+    "word": "盾",
+    "ipa": "dùn",
+    "meaning": "đồng (tiền), VNĐ",
+    "example": "一万_盾_。",
+    "examplePinyin": "Yí wàn _dùn_.",
+    "exampleVi": "Mười nghìn đồng (VNĐ)."
+  },
+  {
+    "word": "贵",
+    "ipa": "guì",
+    "meaning": "đắt",
+    "example": "太_贵_了！",
+    "examplePinyin": "Tài _guì_ le!",
+    "exampleVi": "Đắt quá rồi!"
+  },
+  {
+    "word": "便宜",
+    "ipa": "piányi",
+    "meaning": "Rẻ",
+    "example": "再_便宜_一点儿吧。",
+    "examplePinyin": "Zài _piányi_ yìdiǎnr ba.",
+    "exampleVi": "Rẻ thêm một chút đi."
+  },
+  {
+    "word": "了",
+    "ipa": "le",
+    "meaning": "trợ từ ngữ khí",
+    "example": "太好_了_。",
+    "examplePinyin": "Tài hǎo _le_.",
+    "exampleVi": "Tốt quá rồi."
+  },
+  {
+    "word": "吧",
+    "ipa": "ba",
+    "meaning": "trợ từ dùng ở cuối câu",
+    "example": "走_吧_。",
+    "examplePinyin": "Zǒu _ba_.",
+    "exampleVi": "Đi thôi."
+  },
+  {
+    "word": "给",
+    "ipa": "gěi",
+    "meaning": "cho, lấy cho",
+    "example": "_给_您钱。",
+    "examplePinyin": "_Gěi_ nín qián.",
+    "exampleVi": "Gửi tiền cho ngài."
+  },
+  {
+    "word": "一共",
+    "ipa": "yí gòng",
+    "meaning": "tất cả, tổng cộng",
+    "example": "_一共_多少钱？",
+    "examplePinyin": "_Yí gòng_ duōshao qián?",
+    "exampleVi": "Tổng cộng bao nhiêu tiền?"
+  },
+  {
+    "word": "找",
+    "ipa": "zhǎo",
+    "meaning": "trả lại (tiền lẻ)",
+    "example": "_找_您三块。",
+    "examplePinyin": "_Zhǎo_ nín sān kuài.",
+    "exampleVi": "Trả lại ngài 3 đồng."
+  },
+  {
+    "word": "半",
+    "ipa": "bàn",
+    "meaning": "một nửa",
+    "example": "一斤_半_。",
+    "examplePinyin": "Yì jīn _bàn_.",
+    "exampleVi": "Một cân rưỡi."
+  }
 ];
 
 let currentCard = 0, isFlipped = false;
@@ -454,7 +628,7 @@ function selectMatch(type, key) {
 function showMatchSummary() { let pct=matchTotal?Math.round((matchScore/matchTotal)*100):0; scores.matching={correct:matchScore,total:matchTotal}; localStorage.setItem('vocabScores', JSON.stringify(scores)); updateScoreDisplay(); document.getElementById('gameContent').innerHTML=`<div class="text-center"><div class="text-6xl">🏆</div><h3 class="font-black">Kết quả ghép cặp: ${matchScore}/${matchTotal}</h3><button onclick="closeModal()" class="mt-4 px-6 py-2 bg-purple-500 text-white rounded-full">Đóng</button><button onclick="openGame('matching')" class="ml-2 px-6 py-2 bg-white border rounded-full">Chơi lại</button></div>`; }
 function updateScoreDisplay() { ['quiz','listenWord','typing','matching','listenSentence'].forEach(k=>{ let el=document.getElementById(`score-${k}`); if(el && scores[k]) el.textContent=`${scores[k].correct}/${scores[k].total} (${Math.round((scores[k].correct/scores[k].total)*100)}%)`; }); }
 function playSound(correct) { try{ let ctx=new (window.AudioContext||window.webkitAudioContext)(); let o=ctx.createOscillator(); let g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); correct?(o.frequency.setValueAtTime(600,ctx.currentTime),o.frequency.setValueAtTime(900,ctx.currentTime+0.1)):(o.frequency.setValueAtTime(250,ctx.currentTime),o.frequency.setValueAtTime(180,ctx.currentTime+0.15)); g.gain.setValueAtTime(0.15,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.3); o.start(ctx.currentTime); o.stop(ctx.currentTime+0.3); } catch(e){} }
-function showSummary() { let keys=['quiz','listenWord','typing','matching','listenSentence'], names={quiz:'Trắc nghiệm',listenWord:'Nghe từ',typing:'Gõ từ',matching:'Ghép cặp',listenSentence:'Nghe câu'}, colors={quiz:'#a78bfa',listenWord:'#60a5fa',typing:'#fbbf24',matching:'#34d399',listenSentence:'#f472b6'}; let played=keys.filter(k=>scores[k]); if(!played.length){ document.getElementById('summaryContent').innerHTML='<p class="text-sm">Chưa có dữ liệu. Hãy chơi ít nhất 1 trò chơi!</p>'; return; } let totalCorrect=0,totalQ=0; played.forEach(k=>{totalCorrect+=scores[k].correct; totalQ+=scores[k].total;}); let avgPct=totalQ?Math.round((totalCorrect/totalQ)*100):0; let pieData=played.map(k=>({name:names[k],pct:Math.round((scores[k].correct/scores[k].total)*100),color:colors[k]})); let r=60,cx=70,cy=70; let offset=0,circ=2*Math.PI*r; let slices=pieData.map(d=>{let dash=(d.pct/100)*circ; let s=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${d.color}" stroke-width="14" stroke-dasharray="${dash} ${circ-dash}" stroke-dashoffset="${-offset*circ/100}" transform="rotate(-90 ${cx} ${cy})" opacity="0.85"/>`; offset+=d.pct/pieData.length; return s; }); let pieSVG=`<svg width="140" height="140" viewBox="0 0 140 140"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#f3f4f6" stroke-width="14"/>${slices.join('')}<text x="${cx}" y="${cy-4}" text-anchor="middle" font-weight="900" font-size="20" fill="#7c3aed">${avgPct}%</text><text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="10" fill="#9ca3af">chính xác</text></svg>`; let gameRows=keys.map(k=>{if(!scores[k]) return `<tr><td class="p-2 font-bold">${names[k]}</td><td class="p-2 text-gray-300">Chưa chơi</td>`; let p=Math.round((scores[k].correct/scores[k].total)*100); return `<tr><td class="p-2 font-bold" style="color:${colors[k]}">${names[k]}</td><td class="p-2 font-black">${scores[k].correct}/${scores[k].total} (${p}%)</td>`;}).join(''); document.getElementById('summaryContent').innerHTML=`<div class="flex flex-col sm:flex-row gap-4 items-center"><div>${pieSVG}</div><div><table class="w-full">${gameRows}</table></div></div>`; }
+function showSummary() { let keys=['quiz','listenWord','typing','matching','listenSentence'], names={quiz:'Trắc nghiệm',listenWord:'Nghe từ',typing:'Gõ từ',matching:'Ghép cặp',listenSentence:'Nghe câu'}, colors={quiz:'#a78bfa',listenWord:'#60a5fa',typing:'#fbbf24',matching:'#34d399',listenSentence:'#f472b6'}; let played=keys.filter(k=>scores[k]); if(!played.length){ document.getElementById('summaryContent').innerHTML='<p class="text-sm">Chưa có dữ liệu. Hãy chơi ít nhất 1 trò chơi!</p>'; return; } let totalCorrect=0,totalQ=0; played.forEach(k=>{totalCorrect+=scores[k].correct; totalQ+=scores[k].total;}); let avgPct=totalQ?Math.round((totalCorrect/totalQ)*100):0; let pieData=played.map(k=>({name:names[k],pct:Math.round((scores[k].correct/scores[k].total)*100),color:colors[k]})); let r=60,cx=70,cy=70; let offset=0,circ=2*Math.PI*r; let slices=pieData.map(d=>{let dash=(d.pct/100)*circ; let s=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${d.color}" stroke-width="14" stroke-dasharray="${dash} ${circ-dash}" stroke-dashoffset="${-offset*circ/100}" transform="rotate(-90 ${cx} ${cy})" opacity="0.85"/>`; offset+=d.pct/pieData.length; return s; }); let pieSVG=`<svg width="140" height="140" viewBox="0 0 140 140"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#f3f4f6" stroke-width="14"/>${slices.join('')}<text x="${cx}" y="${cy-4}" text-anchor="middle" font-weight="900" font-size="20" fill="#7c3aed">${avgPct}%</text><text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="10" fill="#9ca3af">chính xác</text></svg>`; let gameRows=keys.map(k=>{if(!scores[k]) return `<tr><td class="p-2 font-bold">${names[k]}</td><td class="p-2 text-gray-300">Chưa chơi</td>`; let p=Math.round((scores[k].correct/scores[k].total)*100); return `<tr><td class="p-2 font-bold" style="color:${colors[k]}">${names[k]}</td><td class="p-2 font-black">${scores[k].correct}/${scores[k].total} (${p}%)</td>`;}).join(''); document.getElementById('summaryContent').innerHTML=`<div class="flex flex-col sm:flex-row gap-4 items-center"><div>${pieSVG}</div><div><table class="w-full">${gameRows}</td></div></div>`; }
 
 let touchStartX = 0;
 document.getElementById('flashcardScene').addEventListener('touchstart', e=>{ touchStartX = e.touches[0].clientX; }, {passive:true});
